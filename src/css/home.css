@@ -1,0 +1,13 @@
+:root {
+  --background: #e4eafc;
+  --primary: #44adca;
+  --secondary: #d34258;
+  --third: #b2b2b2;
+  --forth: #2f2f2f;
+  --five: #f8f8ff;
+}
+
+.homepage {
+  width: 100%;
+  height: auto;
+}

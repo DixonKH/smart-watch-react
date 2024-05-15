@@ -1,0 +1,189 @@
+:root {
+  --background: #e4eafc;
+  --primary: #44adca;
+  --secondary: #d34258;
+  --third: #b2b2b2;
+  --forth: #2f2f2f;
+  --five: #f8f8ff;
+}
+
+.home-navbar {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.home-navbar .menu {
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.home-navbar .menu .links {
+  min-width: 750px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.home-navbar .menu .links a {
+  text-decoration: none;
+  font-family: "Poppins";
+  font-weight: 500;
+  font-size: 18px;
+  color: var(--forth);
+}
+
+.home-navbar .menu .links .login-button {
+  background: var(--primary);
+  color: var(--five);
+}
+
+.home-navbar .menu .links .user {
+  width: 50px;
+  height: 50px;
+  border-radius: 24px;
+}
+
+.home-navbar .hover-line {
+  color: var(--five);
+  z-index: 100;
+}
+
+.home-navbar .underline {
+  display: block;
+  content: "";
+  border-bottom: solid 2.5px var(--primary);
+}
+
+.home-navbar .hover-line:after {
+  display: block;
+  content: "";
+  border-bottom: solid 2.5px var(--primary);
+  transform: scaleX(0);
+  transition: transform 250ms ease-in-out;
+}
+
+.home-navbar .hover-line:hover:after {
+  transform: scaleX(1);
+}
+
+.home-navbar .carusel {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+.home-navbar .carusel .carusel-txt {
+  position: absolute;
+  top: 20%;
+  left: 12%;
+}
+
+.home-navbar .carusel .carusel-txt .my-swiper-slide p {
+  font-size: 36px;
+  font-family: "Poppins";
+  font-weight: 500;
+  line-height: 0;
+  color: var(--forth);
+}
+
+.home-navbar .carusel .carusel-txt .my-swiper-slide h1 {
+  font-size: 60px;
+  font-family: "Poppins";
+  font-weight: 600;
+  line-height: 0;
+}
+
+.home-navbar .carusel .mySwiper img {
+  width: 100%;
+  height: 100%;
+}
+
+.home-navbar .carusel .carusel-txt .swiper-button {
+  position: absolute;
+  left: 0;
+  margin-top: 10px;
+  width: 180px;
+  height: 50px;
+  background-color: var(--primary);
+  color: #f8f8ff;
+  font-weight: 400;
+}
+
+/* OTHER NAVBAR */
+
+.other-navbar {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.other-navbar .menu {
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.other-navbar .menu .links {
+  min-width: 750px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.other-navbar .menu .links a {
+  text-decoration: none;
+  font-family: "Poppins";
+  font-weight: 500;
+  font-size: 18px;
+  color: var(--forth);
+}
+
+.other-navbar .menu .links .login-button {
+  background: var(--primary);
+  color: var(--five);
+}
+
+.other-navbar .menu .links .user {
+  width: 50px;
+  height: 50px;
+  border-radius: 24px;
+}
+
+.home-navbar .hover-line {
+  color: var(--five);
+  z-index: 100;
+}
+
+.other-navbar .underline {
+  display: block;
+  content: "";
+  border-bottom: solid 2.5px var(--primary);
+}
+
+.other-navbar .hover-line:after {
+  display: block;
+  content: "";
+  border-bottom: solid 2.5px var(--primary);
+  transform: scaleX(0);
+  transition: transform 250ms ease-in-out;
+}
+
+.other-navbar .hover-line:hover:after {
+  transform: scaleX(1);
+}
+
+.other-navbar .navbar-img {
+  width: 100%;
+  height: 300px;
+  background-image: url("/public/img/clock-8300238_1280.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
