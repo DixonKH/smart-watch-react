@@ -1,6 +1,13 @@
 import React from "react";
-import { Container } from "@mui/material";
+import { Container, Stack } from "@mui/material";
 
 export function Advertisement() {
-  return <Container>Advertisement</Container>;
+  return (
+    <div className="adv-div">
+      <Container className="adv-container">
+        <Stack></Stack>
+        <Stack></Stack>
+      </Container>
+    </div>
+  );
 }

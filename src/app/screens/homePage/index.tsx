@@ -4,6 +4,7 @@ import { NewProducts } from "./NewProducts";
 import { Testimonal } from "./Testimonal";
 import { Events } from "./Events";
 import { Advertisement } from "./Advertisement";
+import "../../../css/home.css";
 
 export function HomePage() {
   return (
