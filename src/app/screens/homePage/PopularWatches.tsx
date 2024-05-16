@@ -27,67 +27,71 @@ export function PopularWatches() {
         <Stack className="popular-section">
           <Box className="category-title">Featured Collection</Box>
           <Stack className="cards-frame">
-            {list.map((ele, index) => {
-              return (
-                <CssVarsProvider key={index}>
-                  <Card className={"card"}>
-                    <CardCover>
-                      <img src={ele.imagePath} className="card-img" alt="" />
-                    </CardCover>
-                    <CardCover className={"card-cover"} />
-                    <CardContent sx={{ justifyContent: "flex-end" }}>
-                      <Stack
-                        flexDirection={"row"}
-                        justifyContent={"space-between"}
-                      >
-                        <Typography
-                          level="h2"
-                          fontSize="lg"
-                          textColor="#fff"
-                          mb={1}
+            {list.length !== 0 ? (
+              list.map((ele, index) => {
+                return (
+                  <CssVarsProvider key={index}>
+                    <Card className={"card"}>
+                      <CardCover>
+                        <img src={ele.imagePath} className="card-img" alt="" />
+                      </CardCover>
+                      <CardCover className={"card-cover"} />
+                      <CardContent sx={{ justifyContent: "flex-end" }}>
+                        <Stack
+                          flexDirection={"row"}
+                          justifyContent={"space-between"}
                         >
-                          {ele.productName}
-                        </Typography>
-                        <Typography
-                          sx={{
-                            fontWeight: "mb",
-                            color: "#fff",
-                            alignItems: "center",
-                            display: "flex",
-                          }}
-                        >
-                          20
-                          <VisibilityIcon
+                          <Typography
+                            level="h2"
+                            fontSize="lg"
+                            textColor="#fff"
+                            mb={1}
+                          >
+                            {ele.productName}
+                          </Typography>
+                          <Typography
                             sx={{
-                              fontSize: 25,
-                              marginLeft: "5px",
-                              color: "#44adca",
+                              fontWeight: "mb",
+                              color: "#fff",
+                              alignItems: "center",
+                              display: "flex",
                             }}
-                          />
-                        </Typography>
-                      </Stack>
-                    </CardContent>
-                    <CardOverflow
-                      sx={{
-                        display: "flex",
-                        gap: 1.5,
-                        py: 1.5,
-                        px: "var(--Card-padding",
-                        borderTop: "1px solid",
-                        height: "60px",
-                      }}
-                    >
-                      <Typography
-                        startDecorator={<DescriptionOutlinedIcon />}
-                        textColor="neutral.300"
+                          >
+                            20
+                            <VisibilityIcon
+                              sx={{
+                                fontSize: 25,
+                                marginLeft: "5px",
+                                color: "#44adca",
+                              }}
+                            />
+                          </Typography>
+                        </Stack>
+                      </CardContent>
+                      <CardOverflow
+                        sx={{
+                          display: "flex",
+                          gap: 1.5,
+                          py: 1.5,
+                          px: "var(--Card-padding",
+                          borderTop: "1px solid",
+                          height: "60px",
+                        }}
                       >
-                        The best watches
-                      </Typography>
-                    </CardOverflow>
-                  </Card>
-                </CssVarsProvider>
-              );
-            })}
+                        <Typography
+                          startDecorator={<DescriptionOutlinedIcon />}
+                          textColor="neutral.300"
+                        >
+                          The best watches
+                        </Typography>
+                      </CardOverflow>
+                    </Card>
+                  </CssVarsProvider>
+                );
+              })
+            ) : (
+              <Box className="no-data">New products are not available</Box>
+            )}
           </Stack>
         </Stack>
       </Container>
