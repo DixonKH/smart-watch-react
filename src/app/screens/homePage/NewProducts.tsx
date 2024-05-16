@@ -5,7 +5,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import { AspectRatio, Card, CardOverflow, CssVarsProvider } from "@mui/joy";
 
 const newProducts = [
-  { productName: "Mobile", imagePath: "/img/perspiciatis-unde.jpg" },
+  { productName: "Mobile", imagePath: "/img/watch9.jpg" },
   { productName: "Sports", imagePath: "/img/watch2.jpg" },
   { productName: "Jewellery", imagePath: "/img/watch3.jpg" },
   { productName: "Cameras", imagePath: "/img/watch4.jpg" },
