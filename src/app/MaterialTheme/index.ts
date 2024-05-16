@@ -11,7 +11,7 @@ const light = {
   palette: {
     type: "light",
     background: {
-      default: "#d7dde7",
+      default: "#f8f8ff",
       paper: common.white,
     },
     primary: {
@@ -38,7 +38,7 @@ const light = {
     MuiCssBaseline: {
       styleOverrides: {
         html: { height: "100%" },
-        body: { background: "#d7dde7", height: "100%", minHeight: "100%" },
+        body: { background: "#f8f8ff", height: "100%", minHeight: "100%" },
       },
     },
   },

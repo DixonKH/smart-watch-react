@@ -11,7 +11,8 @@
   width: 100%;
   height: auto;
   padding-top: 70px;
-  background: var(--five);
+  color: var(--five);
+  background: var(--primary);
 }
 
 .footer-div .footer {
@@ -49,8 +50,8 @@
 .footer-div .footer-bottom {
   width: 100%;
   height: 80px;
-  background-color: var(--primary);
-  color: var(--five);
+  background-color: var(--background);
+  color: var(--forth);
 }
 
 .footer-div .footer-bottom .footer-cards {
