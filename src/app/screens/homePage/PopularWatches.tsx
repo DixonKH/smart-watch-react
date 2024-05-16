@@ -1,3 +1,4 @@
+import React from "react";
 import { Box, Container, Stack } from "@mui/material";
 import { CssVarsProvider } from "@mui/joy/styles";
 import Card from "@mui/joy/Card";
@@ -13,6 +14,10 @@ const list = [
   { productName: "Sports", imagePath: "/img/watch2.jpg" },
   { productName: "Jewellery", imagePath: "/img/watch3.jpg" },
   { productName: "Cameras", imagePath: "/img/watch4.jpg" },
+  { productName: "Fashion", imagePath: "/img/watch5.jpg" },
+  { productName: "Men", imagePath: "/img/watch6.jpg" },
+  { productName: "Formal", imagePath: "/img/watch7.jpg" },
+  { productName: "Nature", imagePath: "/img/watch8.jpg" },
 ];
 
 export function PopularWatches() {

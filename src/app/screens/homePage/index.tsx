@@ -1,3 +1,4 @@
+import React from "react";
 import { BrandDetail } from "./BrandDetail";
 import { PopularWatches } from "./PopularWatches";
 import { NewProducts } from "./NewProducts";
