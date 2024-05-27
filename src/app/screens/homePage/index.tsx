@@ -3,7 +3,6 @@ import { BrandDetail } from "./BrandDetail";
 import { PopularWatches } from "./PopularWatches";
 import { NewProducts } from "./NewProducts";
 import { Testimonal } from "./Testimonal";
-import { Events } from "./Events";
 import { Advertisement } from "./Advertisement";
 import "../../../css/home.css";
 
@@ -15,7 +14,6 @@ export function HomePage() {
       <PopularWatches />
       <NewProducts />
       <Testimonal />
-      <Events />
     </div>
   );
 }
