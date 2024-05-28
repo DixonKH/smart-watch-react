@@ -1,0 +1,398 @@
+:root {
+  --background: #ffffff;
+  --primary: #44adca;
+  --secondary: #d34258;
+  --third: #b2b2b2;
+  --forth: #2f2f2f;
+  --five: #f8f8f8;
+  --six: #f3f3f3;
+}
+
+.order-page {
+  width: 100%;
+  height: auto;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.order-page .orders-label {
+  margin: 50px 0 50px 0;
+  transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
+}
+.order-page .order-container {
+  margin: 50px 0 50px 0;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  background: #ffffff;
+}
+.order-page .order-container .container-stack {
+  width: 640px;
+  height: 700px;
+  overflow: auto;
+}
+
+.order-page .order-container .container-stack::-webkit-scrollbar {
+  width: 7px;
+}
+
+.order-page .order-container .container-stack::-webkit-scrollbar-thumb {
+  background-color: var(--primary);
+  border-radius: 7px;
+}
+
+.order-page .order-container .container-stack::-webkit-scrollbar-track {
+  background-color: #f9f9f9;
+  border-radius: 7px;
+}
+
+.order-page .order-main-box {
+  position: relative;
+  width: 620px;
+  height: 280px;
+  margin-bottom: 25px;
+  padding-top: 5px;
+  background: #f8f8ff;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.order-page .order-main-box .order-box-scroll {
+  width: 100%;
+  height: 175px;
+  overflow: auto;
+  padding: 20px 25px 0 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
+}
+
+.order-page .order-main-box .order-box-scroll::-webkit-scrollbar {
+  width: 7px;
+}
+.order-page .order-main-box .order-box-scroll::-webkit-scrollbar-thumb {
+  background-color: var(--primary);
+  border-radius: 7px;
+}
+
+.order-page .order-main-box .order-box-scroll::-webkit-scrollbar-track {
+  background-color: #f3f1f1;
+  border-radius: 7px;
+}
+
+.order-page .order-main-box .orders-name-price {
+  width: 100%;
+  height: 47px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.order-page .order-main-box .orders-name {
+  width: 370px;
+  height: 47px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+}
+
+.order-page .order-main-box .orders-name .order-watch-img {
+  position: relative;
+  width: 50px;
+  height: 47px;
+  border-radius: 29px;
+  background-size: cover;
+}
+
+.order-page .order-main-box .orders-name .title-watch {
+  width: 260px;
+  height: 36px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 36px;
+  color: var(--forth);
+}
+
+.order-page .order-main-box .orders-name-price .price-box {
+  max-width: 170px;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+  font-family: "Poppins";
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.order-page .order-main-box .total-price-box {
+  position: relative;
+  width: 100%;
+  height: 44px;
+  margin-top: 10px;
+  padding-left: 25px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 5px;
+}
+
+.order-page .order-main-box .total-price-box .box-total {
+  position: relative;
+  max-width: 620px;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.order-page .order-main-box .total-price-box p {
+  margin-left: 7px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 36px;
+  color: var(--forth);
+}
+
+.order-page .order-main-box .total-price-btn {
+  position: relative;
+  margin-bottom: 5px;
+  width: 100%;
+  height: 40px;
+  padding: 7px 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 20px;
+  border-radius: 5px;
+}
+
+.order-page .order-main-box .total-price-btn .cancel-button {
+  border-radius: 7px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  max-height: 40px;
+  background: var(--secondary);
+  color: var(--five);
+}
+
+.order-page .order-main-box .total-price-btn .pay-button {
+  border-radius: 7px;
+  max-height: 40px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background: var(--primary);
+  color: var(--five);
+}
+
+.order-page .order-main-box .verify-fulfil {
+  width: 100%;
+  height: 44px;
+  padding: 0 25px 0;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.order-page .order-main-box .verify-button {
+  border-radius: 10px;
+  width: 140px;
+  font-size: 12px;
+  letter-spacing: -0.2px;
+  max-height: 40px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin-left: 30px;
+  background: var(--primary);
+  color: #ffffff;
+}
+
+/* RIGHT ORDER */
+
+.order-page .order-right {
+  width: 372px;
+  height: 620px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px;
+  background: #565db8;
+  gap: 23px;
+}
+
+.order-page .order-right .order-user,
+.order-user-payment {
+  width: 372px;
+  height: 308px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 29px 20px 0;
+  border-radius: 16px;
+}
+
+.order-page .order-right .order-user .member-box {
+  width: 117px;
+  height: 112px;
+  border-radius: 50px;
+}
+
+.order-page .order-right .order-user .order-user-img {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.order-page .order-right .order-user-img .order-user-icon-box {
+  position: absolute;
+  padding: 5px;
+  width: 30px;
+  height: 30px;
+  top: 75%;
+  right: 0;
+  display: flex;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 37px;
+}
+
+.order-page .order-right .order-user-img .order-user-prof-img {
+  filter: brightness(0) invert(1);
+}
+
+.order-page .order-right .order-user-name {
+  margin-top: 7px;
+  width: 80px;
+  height: 37px;
+  color: var(--five);
+  font-family: "Poppins";
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 36px;
+  text-align: center;
+}
+
+.order-page .order-right .order-user-prof {
+  width: 80px;
+  height: 37px;
+  color: rgb(161, 161, 161);
+  font-family: "Poppins";
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 36px;
+  text-align: center;
+}
+
+.order-page .order-right .order-user .liner {
+  width: 100%;
+  border: 1px solid var(--primary);
+  margin: 35px 0 8px;
+}
+
+.order-page .order-right .order-user-address {
+  width: 100%;
+  height: 22px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 24px;
+  gap: 5px;
+}
+
+.order-page .order-right .order-user-address .order-user-location {
+  width: 20px;
+  height: 32px;
+  color: var(--secondary);
+}
+
+.order-page .order-right .order-user-address .order-local-address {
+  color: var(--five);
+  font-family: "Poppins";
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.order-page .order-right .order-user-payment {
+  width: 100%;
+  height: 308px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.order-page .order-user-payment .user-card-num {
+  width: 325px;
+  height: 50px;
+  color: rgb(119, 119, 119);
+  font-family: "Poppins";
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 36px;
+  padding: 0 8px 0;
+  border: 1px solid var(--forth);
+  border-radius: 4px;
+  border: 1px solid rgb(180, 170, 170);
+  box-sizing: border-box;
+}
+
+.order-page .order-user-payment .user-card-infos {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.order-page .order-user-payment .user-card-info {
+  width: 158px;
+  height: 50px;
+  margin: 10px 0 10px 0;
+  box-sizing: border-box;
+  border: 1px solid rgb(180, 170, 170);
+  border-radius: 5px;
+  color: rgb(119, 119, 119);
+  font-family: "Poppins";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 17px;
+  padding: 0 8px 0;
+}
+
+.order-page .order-user-payment .user-payment-options {
+  margin-top: 50px;
+  width: 100%;
+  height: 28px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.order-page .container-stack .empty-box {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

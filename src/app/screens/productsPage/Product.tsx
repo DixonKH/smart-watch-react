@@ -56,6 +56,28 @@ export default function Product() {
               <Button variant="contained" color="secondary" className="order">
                 VIEWS
               </Button> */}
+              <Stack>
+                <FormControl sx={{ minWidth: 120 }} size="small">
+                  <InputLabel id="demo-select-small-label">Sort By</InputLabel>
+                  <Select
+                    labelId="demo-select-small-label"
+                    id="demo-select-small"
+                    value={sort}
+                    label="Sorting"
+                    onChange={handleChange}
+                  >
+                    <MenuItem className="sorting" value={10}>
+                      NEW
+                    </MenuItem>
+                    <MenuItem className="sorting" value={20}>
+                      PRICE
+                    </MenuItem>
+                    <MenuItem className="sorting" value={30}>
+                      VIEWS
+                    </MenuItem>
+                  </Select>
+                </FormControl>
+              </Stack>
               <Stack className="products-search-bar">
                 <Stack
                   sx={{
@@ -88,51 +110,10 @@ export default function Product() {
                   </Button>
                 </Stack>
               </Stack>
-              <Stack>
-                <FormControl sx={{ minWidth: 120 }} size="small">
-                  <InputLabel id="demo-select-small-label">Sort By</InputLabel>
-                  <Select
-                    labelId="demo-select-small-label"
-                    id="demo-select-small"
-                    value={sort}
-                    label="Sorting"
-                    onChange={handleChange}
-                  >
-                    <MenuItem className="sorting" value={10}>
-                      NEW
-                    </MenuItem>
-                    <MenuItem className="sorting" value={20}>
-                      PRICE
-                    </MenuItem>
-                    <MenuItem className="sorting" value={30}>
-                      VIEWS
-                    </MenuItem>
-                  </Select>
-                </FormControl>
-              </Stack>
             </Stack>
           </Stack>
 
           <Stack className="list-category-section">
-            <Stack className="product-category">
-              <div className="category-filter-box">
-                <Button color="primary" className="order">
-                  APPLE WATCH
-                </Button>
-                <Button color="secondary" className="order">
-                  SAMSUNG WATCH
-                </Button>
-                <Button color="secondary" className="order">
-                  XIAOMI WATCH
-                </Button>
-                <Button color="secondary" className="order">
-                  AIR BUDS
-                </Button>
-                <Button color="secondary" className="order">
-                  OTHER
-                </Button>
-              </div>
-            </Stack>
             <Stack className="product-wrapper">
               {products.length !== 0 ? (
                 products.map((product, index) => {
@@ -177,6 +158,25 @@ export default function Product() {
               ) : (
                 <Box className="no-data">Products are not available!</Box>
               )}
+            </Stack>
+            <Stack className="product-category">
+              <div className="category-filter-box">
+                <Button color="primary" className="order">
+                  APPLE WATCH
+                </Button>
+                <Button color="secondary" className="order">
+                  SAMSUNG WATCH
+                </Button>
+                <Button color="secondary" className="order">
+                  XIAOMI WATCH
+                </Button>
+                <Button color="secondary" className="order">
+                  AIR BUDS
+                </Button>
+                <Button color="secondary" className="order">
+                  OTHER
+                </Button>
+              </div>
             </Stack>
           </Stack>
 

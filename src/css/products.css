@@ -1,5 +1,5 @@
 :root {
-  --background: #e4eafc;
+  --background: #ffffff;
   --primary: #44adca;
   --secondary: #d34258;
   --third: #b2b2b2;
@@ -451,7 +451,7 @@
   font-family: "Poppins";
   font-style: normal;
   font-weight: 500;
-  font-size: 17px;
+  font-size: 20px;
   line-height: 27px;
   color: #504c4c;
 }
