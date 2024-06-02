@@ -18,7 +18,12 @@
 }
 
 .order-page .orders-label {
-  margin: 50px 0 50px 0;
+  font-family: "Poppins";
+  font-size: 16px;
+  font-weight: 500;
+  border-left: 1px solid #44adca;
+
+  margin: 70px 0 50px 0;
   transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
