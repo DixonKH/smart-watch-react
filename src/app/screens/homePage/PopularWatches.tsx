@@ -9,31 +9,46 @@ import CardOverflow from "@mui/joy/CardOverflow";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 
-const list = [
-  { productName: "Mobile", imagePath: "/img/perspiciatis-unde.jpg" },
-  { productName: "Sports", imagePath: "/img/watch2.jpg" },
-  { productName: "Jewellery", imagePath: "/img/watch3.jpg" },
-  { productName: "Cameras", imagePath: "/img/watch4.jpg" },
-  { productName: "Fashion", imagePath: "/img/watch5.jpg" },
-  { productName: "Men", imagePath: "/img/watch6.jpg" },
-  { productName: "Formal", imagePath: "/img/watch7.jpg" },
-  { productName: "Nature", imagePath: "/img/watch8.jpg" },
-];
+import { createSelector } from "reselect";
+import { retrivePopularWatches } from "./selector";
+import { useSelector } from "react-redux";
+import { Product } from "../../../lib/types/product";
+import { ProductCollection } from "../../../lib/enums/product.enum";
+import { serverApi } from "../../../lib/config";
+
+/** REDUX SLICE & SELECTOR */
+const popularWatchesRetriver = createSelector(
+  retrivePopularWatches,
+  (popularWatches) => ({ popularWatches })
+);
+
+// const list = [
+//   { productName: "Mobile", imagePath: "/img/perspiciatis-unde.jpg" },
+//   { productName: "Sports", imagePath: "/img/watch2.jpg" },
+//   { productName: "Jewellery", imagePath: "/img/watch3.jpg" },
+//   { productName: "Cameras", imagePath: "/img/watch4.jpg" },
+//   { productName: "Fashion", imagePath: "/img/watch5.jpg" },
+//   { productName: "Men", imagePath: "/img/watch6.jpg" },
+//   { productName: "Formal", imagePath: "/img/watch7.jpg" },
+//   { productName: "Nature", imagePath: "/img/watch8.jpg" },
+// ];
 
 export function PopularWatches() {
+  const { popularWatches } = useSelector(popularWatchesRetriver);
   return (
     <div className="popular-watches-frame">
       <Container>
         <Stack className="popular-section">
           <Box className="category-title">Featured Collection</Box>
           <Stack className="cards-frame">
-            {list.length !== 0 ? (
-              list.map((ele, index) => {
+            {popularWatches.length !== 0 ? (
+              popularWatches.map((ele: Product) => {
+                const imagePath = `${serverApi}/${ele.productImages[0]}`;
                 return (
-                  <CssVarsProvider key={index}>
+                  <CssVarsProvider key={ele._id}>
                     <Card className={"card"}>
                       <CardCover>
-                        <img src={ele.imagePath} className="card-img" alt="" />
+                        <img src={imagePath} className="card-img" alt="" />
                       </CardCover>
                       <CardCover className={"card-cover"} />
                       <CardContent sx={{ justifyContent: "flex-end" }}>
@@ -57,7 +72,7 @@ export function PopularWatches() {
                               display: "flex",
                             }}
                           >
-                            20
+                            {ele.productViews}
                             <VisibilityIcon
                               sx={{
                                 fontSize: 25,
@@ -82,7 +97,7 @@ export function PopularWatches() {
                           startDecorator={<DescriptionOutlinedIcon />}
                           textColor="neutral.300"
                         >
-                          The best watches
+                          {ele.productDesc}
                         </Typography>
                       </CardOverflow>
                     </Card>

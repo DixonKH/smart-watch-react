@@ -6,28 +6,35 @@ import { Testimonal } from "./Testimonal";
 import { Advertisement } from "./Advertisement";
 import "../../../css/home.css";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
-import { createSelector } from "reselect";
 import { setPopularWatches } from "./slice";
-import { retrivePopularWatches } from "./selector";
 import { Product } from "../../../lib/types/product";
+import ProductService from "../../services/ProductService";
+import { ProductCollection } from "../../../lib/enums/product.enum";
 
 /** REDUX SLICE & SELECTOR */
 const actionDispatch = (dispatch: Dispatch) => ({
   setPopularWatches: (data: Product[]) => dispatch(setPopularWatches(data)),
 });
 
-const popularWatchesRetriver = createSelector(
-  retrivePopularWatches,
-  (popularWatches) => ({ popularWatches })
-);
-
 export function HomePage() {
   const { setPopularWatches } = actionDispatch(useDispatch());
-  const { popularWatches } = useSelector(popularWatchesRetriver);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    const product = new ProductService();
+    product
+      .getproducts({
+        order: "productViews",
+        page: 1,
+        limit: 4,
+        productCollection: ProductCollection.APPLE_WATCH,
+      })
+      .then((data) => {
+        setPopularWatches(data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <div className="homepage">
