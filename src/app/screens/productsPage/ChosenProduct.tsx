@@ -5,6 +5,32 @@ import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
+import { useDispatch } from "react-redux";
+import { Dispatch } from "@reduxjs/toolkit";
+import { setAdmin, setChosenProduct, setProducts } from "./slice";
+import { Product } from "../../../lib/types/product";
+import { createSelector } from "reselect";
+import { useSelector } from "react-redux";
+import { serverApi } from "../../../lib/config";
+import { retriveAdmin, retriveChosenProduct } from "./selector";
+import { Member } from "../../../lib/types/member";
+
+/** REDUX SLICE & SELECTOR */
+const actionDispatch = (dispatch: Dispatch) => ({
+  setAdmin: (data: Member[]) => dispatch(setAdmin(data)),
+  setChosenProduct: (data: Product[]) => dispatch(setChosenProduct(data)),
+});
+
+const chosenProductRetriver = createSelector(
+  retriveChosenProduct,
+  (chosenProduct) => ({
+    chosenProduct,
+  })
+);
+const adminRetriver = createSelector(retriveAdmin, (admin) => ({
+  admin,
+}));
+
 const slideImages = [
   { productName: "Mobile", imagePath: "/img/perspiciatis-unde.jpg" },
   { productName: "Sports", imagePath: "/img/watch2.jpg" },
@@ -17,6 +43,8 @@ const slideImages = [
 ];
 
 export default function ChosenProduct() {
+  const { chosenProduct } = useSelector(chosenProductRetriver);
+  const { admin } = useSelector(adminRetriver);
   return (
     <div className="chosen-product">
       <div className="chosen-product-frame">

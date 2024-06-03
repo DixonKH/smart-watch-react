@@ -9,11 +9,11 @@ import "../../../css/home.css";
 import { useDispatch } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
 import { setNewProducts, setPopularWatches, setTopUsers } from "./slice";
-import { Product } from "../../../lib/types/product";
 import ProductService from "../../services/ProductService";
 import { ProductCollection } from "../../../lib/enums/product.enum";
 import { Member } from "../../../lib/types/member";
 import MemberService from "../../services/MemberService";
+import { Product } from "../../../lib/types/product";
 
 /** REDUX SLICE & SELECTOR */
 const actionDispatch = (dispatch: Dispatch) => ({

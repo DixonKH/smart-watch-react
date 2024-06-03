@@ -19,6 +19,24 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import React from "react";
 
+import { useDispatch } from "react-redux";
+import { Dispatch } from "@reduxjs/toolkit";
+import { setProducts } from "./slice";
+import { Product } from "../../../lib/types/product";
+import { createSelector } from "reselect";
+import { useSelector } from "react-redux";
+import { serverApi } from "../../../lib/config";
+import { retriveProducts } from "./selector";
+
+/** REDUX SLICE & SELECTOR */
+const actionDispatch = (dispatch: Dispatch) => ({
+  setProducts: (data: Product[]) => dispatch(setProducts(data)),
+});
+
+const productsRetriver = createSelector(retriveProducts, (products) => ({
+  products,
+}));
+
 const products = [
   { productName: "Mobile", imagePath: "/img/perspiciatis-unde.jpg" },
   { productName: "Sports", imagePath: "/img/watch2.jpg" },
@@ -31,7 +49,8 @@ const products = [
   { productName: "Sports", imagePath: "/img/watch2.jpg" },
 ];
 
-export default function Product() {
+export default function Products() {
+  const { products } = useSelector(productsRetriver);
   const [sort, setSorts] = React.useState("");
 
   const handleChange = (event: SelectChangeEvent) => {
