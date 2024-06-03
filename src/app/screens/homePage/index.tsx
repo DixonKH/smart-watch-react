@@ -13,15 +13,19 @@ import { Product } from "../../../lib/types/product";
 import ProductService from "../../services/ProductService";
 import { ProductCollection } from "../../../lib/enums/product.enum";
 import { Member } from "../../../lib/types/member";
+import MemberService from "../../services/MemberService";
 
 /** REDUX SLICE & SELECTOR */
 const actionDispatch = (dispatch: Dispatch) => ({
   setPopularWatches: (data: Product[]) => dispatch(setPopularWatches(data)),
   setNewProducts: (data: Product[]) => dispatch(setNewProducts(data)),
+  setTopUsers: (data: Member[]) => dispatch(setTopUsers(data)),
 });
 
 export function HomePage() {
-  const { setPopularWatches, setNewProducts } = actionDispatch(useDispatch());
+  const { setPopularWatches, setNewProducts, setTopUsers } = actionDispatch(
+    useDispatch()
+  );
 
   useEffect(() => {
     const product = new ProductService();
@@ -46,6 +50,14 @@ export function HomePage() {
       })
       .then((data) => {
         setNewProducts(data);
+      })
+      .catch((err) => console.log(err));
+
+    const member = new MemberService();
+    member
+      .getTopUsers()
+      .then((data) => {
+        setTopUsers(data);
       })
       .catch((err) => console.log(err));
   }, []);

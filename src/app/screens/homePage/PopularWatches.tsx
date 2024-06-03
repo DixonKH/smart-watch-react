@@ -10,11 +10,10 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 
 import { createSelector } from "reselect";
-import { retrivePopularWatches } from "./selector";
 import { useSelector } from "react-redux";
-import { Product } from "../../../lib/types/product";
-import { ProductCollection } from "../../../lib/enums/product.enum";
 import { serverApi } from "../../../lib/config";
+import { retrivePopularWatches } from "./selector";
+import { Product } from "../../../lib/types/product";
 
 /** REDUX SLICE & SELECTOR */
 const popularWatchesRetriver = createSelector(
