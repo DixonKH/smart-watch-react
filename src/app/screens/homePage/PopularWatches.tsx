@@ -22,17 +22,6 @@ const popularWatchesRetriver = createSelector(
   (popularWatches) => ({ popularWatches })
 );
 
-// const list = [
-//   { productName: "Mobile", imagePath: "/img/perspiciatis-unde.jpg" },
-//   { productName: "Sports", imagePath: "/img/watch2.jpg" },
-//   { productName: "Jewellery", imagePath: "/img/watch3.jpg" },
-//   { productName: "Cameras", imagePath: "/img/watch4.jpg" },
-//   { productName: "Fashion", imagePath: "/img/watch5.jpg" },
-//   { productName: "Men", imagePath: "/img/watch6.jpg" },
-//   { productName: "Formal", imagePath: "/img/watch7.jpg" },
-//   { productName: "Nature", imagePath: "/img/watch8.jpg" },
-// ];
-
 export function PopularWatches() {
   const { popularWatches } = useSelector(popularWatchesRetriver);
   return (

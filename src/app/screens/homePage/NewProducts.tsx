@@ -4,14 +4,21 @@ import Typography from "@mui/joy/Typography";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { AspectRatio, Card, CardOverflow, CssVarsProvider } from "@mui/joy";
 
-const newProducts = [
-  { productName: "Mobile", imagePath: "/img/watch9.jpg" },
-  { productName: "Sports", imagePath: "/img/watch2.jpg" },
-  { productName: "Jewellery", imagePath: "/img/watch3.jpg" },
-  { productName: "Cameras", imagePath: "/img/watch4.jpg" },
-];
+import { createSelector } from "reselect";
+import { retriveNewProducts, retrivePopularWatches } from "./selector";
+import { useSelector } from "react-redux";
+import { Product } from "../../../lib/types/product";
+import { ProductCollection } from "../../../lib/enums/product.enum";
+import { serverApi } from "../../../lib/config";
+
+/** REDUX SLICE & SELECTOR */
+const newProductsRetriver = createSelector(
+  retriveNewProducts,
+  (newProducts) => ({ newProducts })
+);
 
 export function NewProducts() {
+  const { newProducts } = useSelector(newProductsRetriver);
   return (
     <div className="new-products-frame">
       <Container>
@@ -20,13 +27,18 @@ export function NewProducts() {
           <Stack className="cards-frame">
             <CssVarsProvider>
               {newProducts.length !== 0 ? (
-                newProducts.map((ele, index) => {
+                newProducts.map((ele: Product) => {
+                  const imagePath = `${serverApi}/${ele.productImages[0]}`;
+                  const sizeVolume =
+                    ele.productCollection === ProductCollection.EARPODS
+                      ? ele.productVolume + " mm"
+                      : ele.productSize + " size";
                   return (
-                    <Card key={index} variant="outlined" className="card">
+                    <Card key={ele._id} variant="outlined" className="card">
                       <CardOverflow>
-                        <div className="product-sale">New</div>
+                        <div className="product-sale">{sizeVolume}</div>
                         <AspectRatio ratio="1">
-                          <img src={ele.imagePath} alt="" />
+                          <img src={imagePath} alt="" />
                         </AspectRatio>
                       </CardOverflow>
                       <CardOverflow variant="soft" className="product-detail">
@@ -35,11 +47,13 @@ export function NewProducts() {
                             <Typography className="title">
                               {ele.productName}
                             </Typography>
-                            <Typography className="price">$12</Typography>
+                            <Typography className="price">
+                              ${ele.productPrice}
+                            </Typography>
                           </Stack>
                           <Stack>
                             <Typography className="views">
-                              20
+                              {ele.productViews}
                               <VisibilityIcon
                                 sx={{
                                   fontSize: 20,
