@@ -17,18 +17,20 @@ import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import React, { useEffect } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 
 import { useDispatch } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
 import { setProducts } from "./slice";
-import { Product } from "../../../lib/types/product";
+import { Product, ProductInquery } from "../../../lib/types/product";
 import { createSelector } from "reselect";
 import { useSelector } from "react-redux";
 import { serverApi } from "../../../lib/config";
 import { retriveProducts } from "./selector";
 import ProductService from "../../services/ProductService";
 import { ProductCollection } from "../../../lib/enums/product.enum";
+import { Collections } from "@mui/icons-material";
+import { useHistory } from "react-router-dom";
 
 /** REDUX SLICE & SELECTOR */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -43,20 +45,58 @@ export default function Products() {
   const { setProducts } = actionDispatch(useDispatch());
   const { products } = useSelector(productsRetriver);
   const [sort, setSorts] = React.useState("");
+  const [productSearch, setProductSearch] = useState<ProductInquery>({
+    order: "createdAt",
+    page: 1,
+    limit: 6,
+    productCollection: ProductCollection.APPLE_WATCH,
+    search: "",
+  });
+  const [searchText, setSearchText] = useState<string>("");
+  const history = useHistory();
 
   useEffect(() => {
     const product = new ProductService();
     product
-      .getproducts({
-        order: "createdAt",
-        page: 1,
-        limit: 8,
-        productCollection: ProductCollection.APPLE_WATCH,
-        search: "",
-      })
+      .getproducts(productSearch)
       .then((data) => setProducts(data))
       .catch((err) => console.log(err));
-  }, []);
+  }, [productSearch]);
+
+  useEffect(() => {
+    if (searchText === "") {
+      productSearch.search = "";
+      setProductSearch({ ...productSearch });
+    }
+  }, [searchText]);
+
+  /** HANDLERS */
+
+  const searchCollectionHandler = (collection: ProductCollection) => {
+    productSearch.page = 1;
+    productSearch.productCollection = collection;
+    setProductSearch({ ...productSearch });
+  };
+
+  const searchOrderHandler = (order: string) => {
+    productSearch.page = 1;
+    productSearch.order = order;
+    setProductSearch({ ...productSearch });
+  };
+
+  const searchProductHandler = () => {
+    productSearch.search = searchText;
+    setProductSearch({ ...productSearch });
+  };
+
+  const paginationHandler = (e: ChangeEvent<any>, value: number) => {
+    productSearch.page = value;
+    setProductSearch({ ...productSearch });
+  };
+
+  const chooseWatchHandler = (id: string) => {
+    history.push(`/products/${id}`);
+  };
 
   const handleChange = (event: SelectChangeEvent) => {
     setSorts(event.target.value);
@@ -81,13 +121,25 @@ export default function Products() {
                     label="Sorting"
                     onChange={handleChange}
                   >
-                    <MenuItem className="sorting" value={10}>
+                    <MenuItem
+                      className="sorting"
+                      onClick={() => searchOrderHandler("createdAt")}
+                      value={10}
+                    >
                       NEW
                     </MenuItem>
-                    <MenuItem className="sorting" value={20}>
+                    <MenuItem
+                      className="sorting"
+                      onClick={() => searchOrderHandler("productPrice")}
+                      value={20}
+                    >
                       PRICE
                     </MenuItem>
-                    <MenuItem className="sorting" value={30}>
+                    <MenuItem
+                      className="sorting"
+                      onClick={() => searchOrderHandler("productViews")}
+                      value={30}
+                    >
                       VIEWS
                     </MenuItem>
                   </Select>
@@ -113,13 +165,16 @@ export default function Products() {
                     className={"single-search-input"}
                     style={{ marginLeft: "1px", flex: 1 }}
                     placeholder={"Type here"}
-                    //   value={searchText}
-                    //   onChange={(e) => setSearchText(e.target.value)}
-                    //   onKeyDown={(e) => {
-                    //     if (e.key === "Enter") searchProductHandler();
-                    //  }}
+                    value={searchText}
+                    onChange={(e) => setSearchText(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") searchProductHandler();
+                    }}
                   />
-                  <Button className="product-search-btn">
+                  <Button
+                    className="product-search-btn"
+                    onClick={searchProductHandler}
+                  >
                     <p>SEARCH</p>
                     <SearchIcon sx={{ width: "18px", height: "25px" }} />
                   </Button>
@@ -138,7 +193,11 @@ export default function Products() {
                       ? product.productVolume + " mm"
                       : product.productSize + " size";
                   return (
-                    <Stack key={product._id} className="product-card">
+                    <Stack
+                      key={product._id}
+                      className="product-card"
+                      onClick={() => chooseWatchHandler(product._id)}
+                    >
                       <Stack
                         className="product-img"
                         sx={{ backgroundImage: `url(${imagePath})` }}
@@ -187,20 +246,79 @@ export default function Products() {
             </Stack>
             <Stack className="product-category">
               <div className="category-filter-box">
-                <Button color="primary" className="order">
+                <Button
+                  variant={"contained"}
+                  color={
+                    productSearch.productCollection ===
+                    ProductCollection.APPLE_WATCH
+                      ? "primary"
+                      : "secondary"
+                  }
+                  className="order"
+                  onClick={() =>
+                    searchCollectionHandler(ProductCollection.APPLE_WATCH)
+                  }
+                >
                   APPLE WATCH
                 </Button>
-                <Button color="secondary" className="order">
+                <Button
+                  variant={"contained"}
+                  color={
+                    productSearch.productCollection ===
+                    ProductCollection.SAMSUNG_WATCH
+                      ? "primary"
+                      : "secondary"
+                  }
+                  className="order"
+                  onClick={() =>
+                    searchCollectionHandler(ProductCollection.SAMSUNG_WATCH)
+                  }
+                >
                   SAMSUNG WATCH
                 </Button>
-                <Button color="secondary" className="order">
-                  XIAOMI WATCH
+                <Button
+                  variant={"contained"}
+                  color={
+                    productSearch.productCollection ===
+                    ProductCollection.HUAWEI_WATCH
+                      ? "primary"
+                      : "secondary"
+                  }
+                  className="order"
+                  onClick={() =>
+                    searchCollectionHandler(ProductCollection.HUAWEI_WATCH)
+                  }
+                >
+                  HUAWEI WATCH
                 </Button>
-                <Button color="secondary" className="order">
+                <Button
+                  variant={"contained"}
+                  color={
+                    productSearch.productCollection ===
+                    ProductCollection.EARBUDS
+                      ? "primary"
+                      : "secondary"
+                  }
+                  className="order"
+                  onClick={() =>
+                    searchCollectionHandler(ProductCollection.EARBUDS)
+                  }
+                >
                   AIR BUDS
                 </Button>
-                <Button color="secondary" className="order">
-                  OTHER
+                <Button
+                  variant={"contained"}
+                  color={
+                    productSearch.productCollection === ProductCollection.OTHERS
+                      ? "primary"
+                      : "secondary"
+                  }
+                  className="order"
+                  onClick={() =>
+                    searchCollectionHandler(ProductCollection.OTHERS)
+                  }
+                >
+                  OTHERS
                 </Button>
               </div>
             </Stack>
@@ -208,8 +326,12 @@ export default function Products() {
 
           <Stack className="pagination-section">
             <Pagination
-              count={3}
-              page={1}
+              count={
+                products.length !== 0
+                  ? productSearch.page + 1
+                  : productSearch.page
+              }
+              page={productSearch.page}
               renderItem={(item) => (
                 <PaginationItem
                   components={{
@@ -220,6 +342,7 @@ export default function Products() {
                   color={"primary"}
                 />
               )}
+              onChange={paginationHandler}
             />
           </Stack>
         </Stack>
