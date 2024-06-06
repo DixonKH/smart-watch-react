@@ -8,7 +8,7 @@ import { HomePage } from "./screens/homePage";
 import { HomeNavbar } from "./components/header/HomeNavbar";
 import { OtherNavbar } from "./components/header/OtherNavbar";
 import { Footer } from "./components/footer";
-import { AboutPage } from "./screens/aboutPage";
+import { ContactPage } from "./screens/contactPage";
 import { HelpPage } from "./screens/helpPage";
 import "../css/app.css";
 import "../css/navbar.css";
@@ -32,8 +32,8 @@ function App() {
         <Route path="/help">
           <HelpPage />
         </Route>
-        <Route path="/about">
-          <AboutPage />
+        <Route path="/contact">
+          <ContactPage />
         </Route>
         <Route path="/">
           <HomePage />

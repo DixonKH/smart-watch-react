@@ -42,8 +42,8 @@ export function OtherNavbar() {
               </NavLink>
             </Box>
             <Box className={"hover-line"}>
-              <NavLink to={"/about"} activeClassName={"underline"}>
-                About
+              <NavLink to={"/contact"} activeClassName={"underline"}>
+                Contact Us
               </NavLink>
             </Box>
             {/* Basket  */}

@@ -17,7 +17,7 @@ import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import React from "react";
+import React, { useEffect } from "react";
 
 import { useDispatch } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
@@ -27,6 +27,8 @@ import { createSelector } from "reselect";
 import { useSelector } from "react-redux";
 import { serverApi } from "../../../lib/config";
 import { retriveProducts } from "./selector";
+import ProductService from "../../services/ProductService";
+import { ProductCollection } from "../../../lib/enums/product.enum";
 
 /** REDUX SLICE & SELECTOR */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -37,21 +39,24 @@ const productsRetriver = createSelector(retriveProducts, (products) => ({
   products,
 }));
 
-const products = [
-  { productName: "Mobile", imagePath: "/img/perspiciatis-unde.jpg" },
-  { productName: "Sports", imagePath: "/img/watch2.jpg" },
-  { productName: "Jewellery", imagePath: "/img/watch3.jpg" },
-  { productName: "Cameras", imagePath: "/img/watch4.jpg" },
-  { productName: "Fashion", imagePath: "/img/watch5.jpg" },
-  { productName: "Men", imagePath: "/img/watch6.jpg" },
-  { productName: "Formal", imagePath: "/img/watch7.jpg" },
-  { productName: "Nature", imagePath: "/img/watch8.jpg" },
-  { productName: "Sports", imagePath: "/img/watch2.jpg" },
-];
-
 export default function Products() {
+  const { setProducts } = actionDispatch(useDispatch());
   const { products } = useSelector(productsRetriver);
   const [sort, setSorts] = React.useState("");
+
+  useEffect(() => {
+    const product = new ProductService();
+    product
+      .getproducts({
+        order: "createdAt",
+        page: 1,
+        limit: 8,
+        productCollection: ProductCollection.APPLE_WATCH,
+        search: "",
+      })
+      .then((data) => setProducts(data))
+      .catch((err) => console.log(err));
+  }, []);
 
   const handleChange = (event: SelectChangeEvent) => {
     setSorts(event.target.value);
@@ -66,15 +71,6 @@ export default function Products() {
 
           <Stack className="watches-filter-section">
             <Stack className="watches-filter-box">
-              {/* <Button variant="contained" color="primary" className="order">
-                NEW
-              </Button>
-              <Button variant="contained" color="secondary" className="order">
-                PRICE
-              </Button>
-              <Button variant="contained" color="secondary" className="order">
-                VIEWS
-              </Button> */}
               <Stack>
                 <FormControl sx={{ minWidth: 120 }} size="small">
                   <InputLabel id="demo-select-small-label">Sort By</InputLabel>
@@ -135,22 +131,27 @@ export default function Products() {
           <Stack className="list-category-section">
             <Stack className="product-wrapper">
               {products.length !== 0 ? (
-                products.map((product, index) => {
+                products.map((product) => {
+                  const imagePath = `${serverApi}/${product.productImages[0]}`;
+                  const sizeVolume =
+                    product.productCollection === ProductCollection.EARPODS
+                      ? product.productVolume + " mm"
+                      : product.productSize + " size";
                   return (
-                    <Stack key={index} className="product-card">
+                    <Stack key={product._id} className="product-card">
                       <Stack
                         className="product-img"
-                        sx={{ backgroundImage: `url(${product.imagePath})` }}
+                        sx={{ backgroundImage: `url(${imagePath})` }}
                       >
                         <div className="img-cover"></div>
-                        <div className="product-sale">NEW</div>
+                        <div className="product-sale">{sizeVolume}</div>
                       </Stack>
                       <Stack className="product-desc">
                         <Box className="product-title">
                           {product.productName}
                         </Box>
                         <Box className="product-monety">
-                          <MonetizationOnIcon /> {12}
+                          <MonetizationOnIcon /> {product.productPrice}
                         </Box>
                       </Stack>
                       <Stack className="product-desc">
@@ -162,10 +163,16 @@ export default function Products() {
                           />
                         </Button>
                         <Button className="view-btn">
-                          <Badge badgeContent={15} color="primary">
+                          <Badge
+                            badgeContent={product.productViews}
+                            color="primary"
+                          >
                             <RemoveRedEyeIcon
                               sx={{
-                                color: 20 ? "white" : "grey",
+                                color:
+                                  product.productViews === 0
+                                    ? "white"
+                                    : "#44adca",
                               }}
                             />
                           </Badge>
