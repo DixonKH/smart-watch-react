@@ -14,11 +14,15 @@ import { useSelector } from "react-redux";
 import { serverApi } from "../../../lib/config";
 import { retriveAdmin, retriveChosenProduct } from "./selector";
 import { Member } from "../../../lib/types/member";
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import ProductService from "../../services/ProductService";
+import MemberService from "../../services/MemberService";
 
 /** REDUX SLICE & SELECTOR */
 const actionDispatch = (dispatch: Dispatch) => ({
-  setAdmin: (data: Member[]) => dispatch(setAdmin(data)),
-  setChosenProduct: (data: Product[]) => dispatch(setChosenProduct(data)),
+  setAdmin: (data: Member) => dispatch(setAdmin(data)),
+  setChosenProduct: (data: Product) => dispatch(setChosenProduct(data)),
 });
 
 const chosenProductRetriver = createSelector(
@@ -43,14 +47,33 @@ const slideImages = [
 ];
 
 export default function ChosenProduct() {
+  const { productId } = useParams<{ productId: string }>();
+  const { setAdmin, setChosenProduct } = actionDispatch(useDispatch());
   const { chosenProduct } = useSelector(chosenProductRetriver);
   const { admin } = useSelector(adminRetriver);
+
+  useEffect(() => {
+    const product = new ProductService();
+    product
+      .getProduct(productId)
+      .then((data) => setChosenProduct(data))
+      .catch((err) => console.log(err));
+
+    const member = new MemberService();
+    member
+      .getAdmin()
+      .then((data) => setAdmin(data))
+      .catch((err) => console.log(err));
+  }, []);
+
+  if (!chosenProduct) return null;
+  const imagePath = `${serverApi}/${chosenProduct.productImages[0]}`;
   return (
     <div className="chosen-product">
       <div className="chosen-product-frame">
         <Stack className="product-img">
           <Box>
-            <img src="/img/watch9.jpg" alt="" />
+            <img src={imagePath} alt="" />
           </Box>
           <Box className="product-img-swiper">
             <Swiper
@@ -63,24 +86,30 @@ export default function ChosenProduct() {
               modules={[Pagination]}
               className="mySwiper"
             >
-              {slideImages.map((img, index) => {
-                return (
-                  <SwiperSlide key={index} className="slide-img">
-                    <img src={img.imagePath} alt={img.productName} />
-                  </SwiperSlide>
-                );
-              })}
+              {chosenProduct?.productImages.map(
+                (ele: string, index: number) => {
+                  const imagePath = `${serverApi}/${ele}`;
+                  return (
+                    <SwiperSlide key={index} className="slide-img">
+                      <img src={imagePath} alt={chosenProduct?.productName} />
+                    </SwiperSlide>
+                  );
+                }
+              )}
             </Swiper>
           </Box>
         </Stack>
         <Stack className="product-detail">
           <Stack className="product-title">PRODUCT DETAIL</Stack>
+          <Stack className="product-name">{chosenProduct?.productName}</Stack>
+          <Stack className="admin-name">{admin?.memberNick}</Stack>
+          <Stack className="admin-phone">{admin?.memberPhone}</Stack>
           <Stack className="product-rating">
             <Box className="rating-box">
               <Rating name="half-rating" defaultValue={2.5} precision={0.5} />
             </Box>
             <Button className="view-btn">
-              <Badge badgeContent={15} color="primary">
+              <Badge badgeContent={chosenProduct?.productViews} color="primary">
                 <RemoveRedEyeIcon
                   sx={{
                     color: 20 ? "white" : "grey",
@@ -94,19 +123,11 @@ export default function ChosenProduct() {
               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam
               recusandae ex autem quam temporibus natus sint, doloribus maxime
               omnis.
-              <ul>
-                <li>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                </li>
-                <li>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                </li>
-              </ul>
             </p>
           </Stack>
           <Stack className={"product-price"}>
             <span>Price:</span>
-            <span>$15</span>
+            <span>${chosenProduct?.productPrice}</span>
           </Stack>
           <Button className="card-btn">ADD TO CART</Button>
         </Stack>
