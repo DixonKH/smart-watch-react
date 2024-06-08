@@ -17,8 +17,7 @@ interface HomeNavbarProps {
   onRemove: (item: CartItem) => void;
   onDelete: (item: CartItem) => void;
   onDeleteAll: () => void;
-  // setSignupOpen: (isOpen: boolean) => void;
-  // setLoginOpen: (isOpen: boolean) => void;
+  setLoginOpen: (isOpen: boolean) => void;
   // anchorEl: HTMLElement | null;
   // handleLogoutClick: (e: React.MouseEvent<HTMLElement>) => void;
   // handleCloseLogout: () => void;
@@ -26,7 +25,8 @@ interface HomeNavbarProps {
 }
 
 export function HomeNavbar(props: HomeNavbarProps) {
-  const { cartItems, onAdd, onRemove, onDelete, onDeleteAll } = props;
+  const { cartItems, onAdd, onRemove, onDelete, onDeleteAll, setLoginOpen } =
+    props;
   const authMemeber = null;
   return (
     <div className="home-navbar">
@@ -87,7 +87,10 @@ export function HomeNavbar(props: HomeNavbarProps) {
               />
               {!authMemeber ? (
                 <Box className={"login-button"}>
-                  <PersonIcon className={"login-icon"} />
+                  <PersonIcon
+                    className={"login-icon"}
+                    onClick={() => setLoginOpen(true)}
+                  />
                 </Box>
               ) : (
                 <img

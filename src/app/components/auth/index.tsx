@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
-import { Fab, Stack, TextField } from "@mui/material";
+import { Button, Fab, Stack, TextField } from "@mui/material";
 import styled from "styled-components";
 import LoginIcon from "@mui/icons-material/Login";
 import { T } from "../../../lib/types/common";
@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
-    border: "2px solid #000",
+    borderRadius: "5px",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 2, 2),
   },
@@ -39,12 +39,21 @@ const ModalImg = styled.img`
 interface AuthenticationModalProps {
   signupOpen: boolean;
   loginOpen: boolean;
+  setSignupOpen: (value: boolean) => void;
+  setLoginOpen: (value: boolean) => void;
   handleSignupClose: () => void;
   handleLoginClose: () => void;
 }
 
 export default function AuthenticationModal(props: AuthenticationModalProps) {
-  const { signupOpen, loginOpen, handleSignupClose, handleLoginClose } = props;
+  const {
+    signupOpen,
+    loginOpen,
+    setSignupOpen,
+    setLoginOpen,
+    handleSignupClose,
+    handleLoginClose,
+  } = props;
   const classes = useStyles();
 
   const [memberNick, setMemberNick] = useState<string>("");
@@ -88,8 +97,8 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
         memberPassword: memeberPassword,
       };
 
-      // const member = new MemberService();
-      // const result = await member.signup(signupInput);
+      const member = new MemberService();
+      const result = await member.signup(signupInput);
 
       // setAuthMember(result);
       handleSignupClose();
@@ -139,42 +148,82 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
         <Fade in={signupOpen}>
           <Stack
             className={classes.paper}
-            direction={"row"}
-            sx={{ width: "800px" }}
+            display={"flex"}
+            direction={"column"}
+            alignItems={"center"}
+            justifyContent={"flex-start"}
+            sx={{ width: "700px", height: "70%", border: "none" }}
           >
-            <ModalImg src={"/img/auth.webp"} alt="camera" />
-            <Stack sx={{ marginLeft: "69px", alignItems: "center" }}>
-              <h2>Signup Form</h2>
+            <Stack sx={{ alignItems: "center" }}>
+              <h2
+                style={{
+                  width: "100%",
+                  fontFamily: "Poppins",
+                  fontWeight: "400",
+                  color: "#000",
+                  textAlign: "center",
+                }}
+              >
+                Signup
+              </h2>
               <TextField
-                sx={{ marginTop: "7px" }}
                 id="outlined-basic"
                 label="username"
                 variant="outlined"
+                sx={{ my: "10px", width: "400px" }}
                 onChange={handleUsername}
               />
               <TextField
-                sx={{ my: "17px" }}
                 id="outlined-basic"
                 label="phone number"
                 variant="outlined"
+                sx={{ my: "10px", width: "400px" }}
                 onChange={handlePhone}
               />
               <TextField
                 id="outlined-basic"
                 label="password"
                 variant="outlined"
+                sx={{ my: "10px", width: "400px" }}
                 onChange={handlePassword}
                 onKeyDown={handlePasswordKeyDown}
               />
               <Fab
-                sx={{ marginTop: "30px", width: "120px" }}
                 variant="extended"
-                color="primary"
+                style={{
+                  marginTop: "36px",
+                  width: "400px",
+                  height: "55px",
+                  backgroundColor: "#44adca",
+                  color: "#f8f8ff",
+                  borderRadius: "4px",
+                  fontFamily: "Poppins",
+                  textTransform: "capitalize",
+                  fontSize: "15px",
+                }}
                 onClick={handleSignupRequest}
               >
-                <LoginIcon sx={{ mr: 1 }} />
                 Signup
               </Fab>
+              <Button
+                style={{
+                  marginTop: "20px",
+                  width: "100px",
+                  height: "20px",
+                  backgroundColor: "transparent",
+                  color: "#000",
+                  borderBottom: "none",
+                  fontFamily: "Poppins",
+                  textTransform: "capitalize",
+                  fontSize: "14px",
+                }}
+                onClick={() => {
+                  setLoginOpen(true);
+                  setSignupOpen(false);
+                }}
+              >
+                Login
+              </Button>
             </Stack>
           </Stack>
         </Fade>
@@ -195,42 +244,81 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
         <Fade in={loginOpen}>
           <Stack
             className={classes.paper}
-            direction={"row"}
-            sx={{ width: "700px" }}
+            display={"flex"}
+            direction={"column"}
+            alignItems={"center"}
+            justifyContent={"flex-start"}
+            sx={{ width: "700px", height: "70%", border: "none" }}
           >
-            <ModalImg src={"/img/auth.webp"} alt="camera" />
             <Stack
               sx={{
-                marginLeft: "65px",
                 marginTop: "25px",
                 alignItems: "center",
               }}
             >
-              <h2>Login Form</h2>
+              <h2
+                style={{
+                  width: "100%",
+                  fontFamily: "Poppins",
+                  fontWeight: "400",
+                  color: "#000",
+                  textAlign: "center",
+                }}
+              >
+                Login
+              </h2>
               <TextField
                 id="outlined-basic"
                 label="username"
                 variant="outlined"
-                sx={{ my: "10px" }}
+                sx={{ my: "10px", width: "400px" }}
                 onChange={handleUsername}
               />
               <TextField
                 id={"outlined-basic"}
                 label={"password"}
                 variant={"outlined"}
+                sx={{ my: "10px", width: "400px" }}
                 type={"password"}
                 onChange={handlePassword}
                 onKeyDown={handlePasswordKeyDown}
               />
               <Fab
-                sx={{ marginTop: "27px", width: "120px" }}
                 variant={"extended"}
-                color={"primary"}
+                style={{
+                  marginTop: "36px",
+                  width: "400px",
+                  height: "55px",
+                  backgroundColor: "#44adca",
+                  color: "#f8f8ff",
+                  borderRadius: "4px",
+                  fontFamily: "Poppins",
+                  textTransform: "capitalize",
+                  fontSize: "15px",
+                }}
                 onClick={handleLoginRequest}
               >
-                <LoginIcon sx={{ mr: 1 }} />
                 Login
               </Fab>
+              <Button
+                style={{
+                  marginTop: "20px",
+                  width: "100px",
+                  height: "20px",
+                  backgroundColor: "transparent",
+                  color: "#000",
+                  borderBottom: "none",
+                  fontFamily: "Poppins",
+                  textTransform: "capitalize",
+                  fontSize: "14px",
+                }}
+                onClick={() => {
+                  setSignupOpen(true);
+                  setLoginOpen(false);
+                }}
+              >
+                Sign up
+              </Button>
             </Stack>
           </Stack>
         </Fade>
