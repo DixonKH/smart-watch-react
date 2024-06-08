@@ -119,8 +119,8 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
         memberPassword: memeberPassword,
       };
 
-      // const member = new MemberService();
-      // const result = await member.login(loginInput);
+      const member = new MemberService();
+      const result = await member.login(loginInput);
 
       // setAuthMember(result);
       handleLoginClose();
