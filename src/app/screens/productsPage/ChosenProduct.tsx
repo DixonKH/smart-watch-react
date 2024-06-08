@@ -124,7 +124,21 @@ export default function ChosenProduct(props: ChosenProductProps) {
             <span>Price:</span>
             <span>${chosenProduct?.productPrice}</span>
           </Stack>
-          <Button className="card-btn">ADD TO CART</Button>
+          <Button
+            className="card-btn"
+            onClick={(e) => {
+              onAdd({
+                _id: chosenProduct._id,
+                quantity: 1,
+                name: chosenProduct.productName,
+                price: chosenProduct.productPrice,
+                image: chosenProduct.productImages[0],
+              });
+              e.stopPropagation();
+            }}
+          >
+            ADD TO CART
+          </Button>
         </Stack>
         <div className="cencel-btn">
           <img src={"/icons/cancel.svg"} alt="" />

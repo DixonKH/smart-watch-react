@@ -13,10 +13,10 @@ import { CartItem } from "../../../lib/types/search";
 
 interface HomeNavbarProps {
   cartItems: CartItem[];
-  // onAdd: (item: CartItem) => void;
-  // onRemove: (item: CartItem) => void;
-  // onDelete: (item: CartItem) => void;
-  // onDeleteAll: () => void;
+  onAdd: (item: CartItem) => void;
+  onRemove: (item: CartItem) => void;
+  onDelete: (item: CartItem) => void;
+  onDeleteAll: () => void;
   // setSignupOpen: (isOpen: boolean) => void;
   // setLoginOpen: (isOpen: boolean) => void;
   // anchorEl: HTMLElement | null;
@@ -26,7 +26,7 @@ interface HomeNavbarProps {
 }
 
 export function HomeNavbar(props: HomeNavbarProps) {
-  const { cartItems } = props;
+  const { cartItems, onAdd, onRemove, onDelete, onDeleteAll } = props;
   const authMemeber = null;
   return (
     <div className="home-navbar">
@@ -78,7 +78,13 @@ export function HomeNavbar(props: HomeNavbarProps) {
               <Box className={"home-search-btn"}>
                 <SearchIcon />
               </Box>
-              <Basket cartItems={cartItems} />
+              <Basket
+                cartItems={cartItems}
+                onAdd={onAdd}
+                onRemove={onRemove}
+                onDelete={onDelete}
+                onDeleteAll={onDeleteAll}
+              />
               {!authMemeber ? (
                 <Box className={"login-button"}>
                   <PersonIcon className={"login-icon"} />

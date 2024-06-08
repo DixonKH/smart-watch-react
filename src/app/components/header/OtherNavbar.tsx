@@ -7,9 +7,13 @@ import { CartItem } from "../../../lib/types/search";
 
 interface OtherNavbarProps {
   cartItems: CartItem[];
+  onAdd: (item: CartItem) => void;
+  onRemove: (item: CartItem) => void;
+  onDelete: (item: CartItem) => void;
+  onDeleteAll: () => void;
 }
 export function OtherNavbar(props: OtherNavbarProps) {
-  const { cartItems } = props;
+  const { cartItems, onAdd, onDelete, onDeleteAll, onRemove } = props;
   const authMemeber = null;
   return (
     <div className="other-navbar">
@@ -60,7 +64,13 @@ export function OtherNavbar(props: OtherNavbarProps) {
                 <SearchIcon />
               </Box>
               <Box>
-                <Basket cartItems={cartItems} />
+                <Basket
+                  cartItems={cartItems}
+                  onAdd={onAdd}
+                  onRemove={onRemove}
+                  onDelete={onDelete}
+                  onDeleteAll={onDeleteAll}
+                />
               </Box>
               {!authMemeber ? (
                 <Box className={"login-button"}>

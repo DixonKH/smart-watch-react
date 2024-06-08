@@ -245,16 +245,22 @@
 }
 
 .basket-frame .all-check-box {
-  padding: 0px 6px;
+  padding: 0px 10px;
   width: 100%;
   height: 35px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  background: #d34258;
+  background: var(--secondary);
   color: #f8f8ff;
-  border-width: 1px 0px;
-  border-style: solid;
+}
+
+.basket-frame .all-check-box .all-delete {
+  width: 100%;
+  height: 35px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .basket-frame .basket-info-box {
@@ -315,21 +321,22 @@
 .basket-frame .basket-order {
   margin-top: 10px;
   width: 100%;
+  padding: 0px 12px;
   height: 64px;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
-  border-top: 1px solid rgba(0, 0, 0, 0.5);
+  border-top: 1px solid rgba(0, 0, 0, 0.3);
 }
 
 .basket-order .price {
-  width: 200px;
+  width: 245px;
   display: flex;
   font-family: "Poppins";
   font-style: normal;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 19px;
   line-height: 30px;
   color: #000000;
 }
