@@ -10,14 +10,23 @@ import { OtherNavbar } from "./components/header/OtherNavbar";
 import { Footer } from "./components/footer";
 import { ContactPage } from "./screens/contactPage";
 import { HelpPage } from "./screens/helpPage";
+import useBasket from "./hooks/useBasket";
+import AuthenticationModal from "./components/auth";
 import "../css/app.css";
 import "../css/navbar.css";
 import "../css/footer.css";
-import useBasket from "./hooks/useBasket";
 
 function App() {
   const location = useLocation();
   const { cartItems, onAdd, onRemove, onDelete, onDeleteAll } = useBasket();
+  const [signuOpen, setSignupOpen] = useState<boolean>(false);
+  const [loginOpen, setLoginOpen] = useState<boolean>(true);
+
+  /** HANDLERS */
+
+  const handleSignupClose = () => setSignupOpen(false);
+  const handleLoginClose = () => setLoginOpen(false);
+
   return (
     <>
       {location.pathname === "/" ? (
@@ -58,6 +67,13 @@ function App() {
         </Route>
       </Switch>
       <Footer />
+
+      <AuthenticationModal
+        signupOpen={signuOpen}
+        loginOpen={loginOpen}
+        handleLoginClose={handleLoginClose}
+        handleSignupClose={handleSignupClose}
+      />
     </>
   );
 }

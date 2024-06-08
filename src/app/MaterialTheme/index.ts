@@ -21,6 +21,10 @@ const light = {
       contrastText: "#000",
       main: "#f8f8f8",
     },
+    third: {
+      contrastText: "#000",
+      main: "#d34258",
+    },
     text: {
       primary: "#2f2f2f",
       dark: common.black,

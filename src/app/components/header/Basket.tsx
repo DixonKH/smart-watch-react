@@ -53,7 +53,7 @@ export default function Basket(props: BasketProps) {
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
       >
-        <Badge badgeContent={cartItems.length} color="primary">
+        <Badge badgeContent={cartItems.length} color={"primary"}>
           <ShopTwoIcon className="basket" />
         </Badge>
       </IconButton>
