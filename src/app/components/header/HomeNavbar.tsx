@@ -6,8 +6,27 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import SlidePage from "./SlidePage";
 import { NavLink } from "react-router-dom";
+import PersonIcon from "@mui/icons-material/Person";
+import SearchIcon from "@mui/icons-material/Search";
+import Basket from "./Basket";
+import { CartItem } from "../../../lib/types/search";
 
-export function HomeNavbar() {
+interface HomeNavbarProps {
+  cartItems: CartItem[];
+  // onAdd: (item: CartItem) => void;
+  // onRemove: (item: CartItem) => void;
+  // onDelete: (item: CartItem) => void;
+  // onDeleteAll: () => void;
+  // setSignupOpen: (isOpen: boolean) => void;
+  // setLoginOpen: (isOpen: boolean) => void;
+  // anchorEl: HTMLElement | null;
+  // handleLogoutClick: (e: React.MouseEvent<HTMLElement>) => void;
+  // handleCloseLogout: () => void;
+  // handleLogoutResquest: () => void;
+}
+
+export function HomeNavbar(props: HomeNavbarProps) {
+  const { cartItems } = props;
   const authMemeber = null;
   return (
     <div className="home-navbar">
@@ -55,16 +74,23 @@ export function HomeNavbar() {
                 Contact Us
               </NavLink>
             </Box>
-            {/* Basket  */}
-            {!authMemeber ? (
-              <Box>
-                <Button variant="contained" className={"login-button"}>
-                  Login
-                </Button>
+            <Box className={"left-navbar"}>
+              <Box className={"home-search-btn"}>
+                <SearchIcon />
               </Box>
-            ) : (
-              <img className={"user"} src={"/icons/l"} aria-haspopup={"true"} />
-            )}
+              <Basket cartItems={cartItems} />
+              {!authMemeber ? (
+                <Box className={"login-button"}>
+                  <PersonIcon className={"login-icon"} />
+                </Box>
+              ) : (
+                <img
+                  className={"user"}
+                  src={"/icons/l"}
+                  aria-haspopup={"true"}
+                />
+              )}
+            </Box>
           </Stack>
         </Stack>
       </Container>

@@ -1,6 +1,15 @@
 import { Box, Button, Container, Stack } from "@mui/material";
 import { NavLink } from "react-router-dom";
-export function OtherNavbar() {
+import PersonIcon from "@mui/icons-material/Person";
+import SearchIcon from "@mui/icons-material/Search";
+import Basket from "./Basket";
+import { CartItem } from "../../../lib/types/search";
+
+interface OtherNavbarProps {
+  cartItems: CartItem[];
+}
+export function OtherNavbar(props: OtherNavbarProps) {
+  const { cartItems } = props;
   const authMemeber = null;
   return (
     <div className="other-navbar">
@@ -46,16 +55,25 @@ export function OtherNavbar() {
                 Contact Us
               </NavLink>
             </Box>
-            {/* Basket  */}
-            {!authMemeber ? (
-              <Box>
-                <Button variant="contained" className={"login-button"}>
-                  Login
-                </Button>
+            <Box className={"left-navbar"}>
+              <Box className={"home-search-btn"}>
+                <SearchIcon />
               </Box>
-            ) : (
-              <img className={"user"} src={"/icons/l"} aria-haspopup={"true"} />
-            )}
+              <Box>
+                <Basket cartItems={cartItems} />
+              </Box>
+              {!authMemeber ? (
+                <Box className={"login-button"}>
+                  <PersonIcon className={"login-icon"} />
+                </Box>
+              ) : (
+                <img
+                  className={"user"}
+                  src={"/icons/l"}
+                  aria-haspopup={"true"}
+                />
+              )}
+            </Box>
           </Stack>
         </Stack>
       </Container>

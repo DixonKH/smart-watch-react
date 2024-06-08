@@ -18,6 +18,7 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import ProductService from "../../services/ProductService";
 import MemberService from "../../services/MemberService";
+import { CartItem } from "../../../lib/types/search";
 
 /** REDUX SLICE & SELECTOR */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -35,18 +36,12 @@ const adminRetriver = createSelector(retriveAdmin, (admin) => ({
   admin,
 }));
 
-const slideImages = [
-  { productName: "Mobile", imagePath: "/img/perspiciatis-unde.jpg" },
-  { productName: "Sports", imagePath: "/img/watch2.jpg" },
-  { productName: "Jewellery", imagePath: "/img/watch3.jpg" },
-  { productName: "Cameras", imagePath: "/img/watch4.jpg" },
-  { productName: "Fashion", imagePath: "/img/watch5.jpg" },
-  { productName: "Men", imagePath: "/img/watch6.jpg" },
-  { productName: "Formal", imagePath: "/img/watch7.jpg" },
-  { productName: "Nature", imagePath: "/img/watch8.jpg" },
-];
+interface ChosenProductProps {
+  onAdd: (item: CartItem) => void;
+}
 
-export default function ChosenProduct() {
+export default function ChosenProduct(props: ChosenProductProps) {
+  const { onAdd } = props;
   const { productId } = useParams<{ productId: string }>();
   const { setAdmin, setChosenProduct } = actionDispatch(useDispatch());
   const { chosenProduct } = useSelector(chosenProductRetriver);

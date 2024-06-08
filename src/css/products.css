@@ -124,8 +124,15 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid var(--primary);
   cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.products-page .product-category .category-filter-box .order:hover {
+  opacity: 1;
+  transform: scale(1.05);
+  background-color: #44adca;
+  color: #f8f8ff;
 }
 
 .products-page .products .product-wrapper {

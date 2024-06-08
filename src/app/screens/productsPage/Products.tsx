@@ -31,6 +31,7 @@ import ProductService from "../../services/ProductService";
 import { ProductCollection } from "../../../lib/enums/product.enum";
 import { Collections } from "@mui/icons-material";
 import { useHistory } from "react-router-dom";
+import { CartItem } from "../../../lib/types/search";
 
 /** REDUX SLICE & SELECTOR */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -40,8 +41,12 @@ const actionDispatch = (dispatch: Dispatch) => ({
 const productsRetriver = createSelector(retriveProducts, (products) => ({
   products,
 }));
+interface ProductsProps {
+  onAdd: (item: CartItem) => void;
+}
 
-export default function Products() {
+export default function Products(props: ProductsProps) {
+  const { onAdd } = props;
   const { setProducts } = actionDispatch(useDispatch());
   const { products } = useSelector(productsRetriver);
   const [sort, setSorts] = React.useState("");
@@ -214,7 +219,19 @@ export default function Products() {
                         </Box>
                       </Stack>
                       <Stack className="product-desc">
-                        <Button className="shop-btn">
+                        <Button
+                          className="shop-btn"
+                          onClick={(e) => {
+                            onAdd({
+                              _id: product._id,
+                              quantity: 1,
+                              name: product.productName,
+                              price: product.productPrice,
+                              image: product.productImages[0],
+                            });
+                            e.stopPropagation();
+                          }}
+                        >
                           <p>Add to Cart</p>
                           <img
                             src={"/icons/shopping-cart.svg"}
