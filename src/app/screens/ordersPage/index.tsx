@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { PausedOrders } from "./PausedOrders";
 import { ProcessOrders } from "./ProcessOrders";
 import { FinishedOrders } from "./FinishedOrders";
@@ -8,6 +8,21 @@ import { Container, Stack, Tabs } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import "../../../css/order.css";
+
+import { useDispatch } from "react-redux";
+import { Dispatch } from "@reduxjs/toolkit";
+import { setPausedOrders, setProcessOrders, setFinishedOrders } from "./slice";
+import { Order, OrderInquiry } from "../../../lib/types/order";
+import { useGlobals } from "../../hooks/useGlobals";
+import { useHistory } from "react-router-dom";
+import { OrderStatus } from "../../../lib/enums/order.enum";
+import OrderService from "../../services/OrderService";
+
+const actionDispatch = (dispatch: Dispatch) => ({
+  setPausedOrders: (data: Order[]) => dispatch(setPausedOrders(data)),
+  setProcessOrders: (data: Order[]) => dispatch(setProcessOrders(data)),
+  setFinishedOrders: (data: Order[]) => dispatch(setFinishedOrders(data)),
+});
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -43,7 +58,38 @@ function a11yProps(index: number) {
 }
 
 export function OrdersPage() {
+  const { setPausedOrders, setProcessOrders, setFinishedOrders } =
+    actionDispatch(useDispatch());
+
+  const { orderBuilder, authMember } = useGlobals();
   const [value, setValue] = React.useState(0);
+  const history = useHistory();
+  const [orderInquiry, setOrderInquiry] = useState<OrderInquiry>({
+    page: 1,
+    limit: 5,
+    orderStatus: OrderStatus.PAUSE,
+  });
+
+  useEffect(() => {
+    const order = new OrderService();
+    order
+      .getMyOrders({ ...orderInquiry, orderStatus: OrderStatus.PAUSE })
+      .then((data) => setPausedOrders(data))
+      .catch((err) => console.log(err));
+
+    order
+      .getMyOrders({ ...orderInquiry, orderStatus: OrderStatus.PROCESS })
+      .then((data) => setProcessOrders(data))
+      .catch((err) => console.log(err));
+
+    order
+      .getMyOrders({ ...orderInquiry, orderStatus: OrderStatus.FINISH })
+      .then((data) => setFinishedOrders(data))
+      .catch((err) => console.log(err));
+  }, [orderInquiry, orderBuilder]);
+
+  /** HANDLER */
+
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
@@ -72,17 +118,17 @@ export function OrdersPage() {
           >
             <Tab
               className="orders-label"
-              label="PausedOrders"
+              label="Paused Orders"
               {...a11yProps(0)}
             />
             <Tab
               className="orders-label"
-              label="ProcessOrders"
+              label="Process Orders"
               {...a11yProps(1)}
             />
             <Tab
               className="orders-label"
-              label="FinishedOrders"
+              label="Finished Orders"
               {...a11yProps(2)}
             />
           </Tabs>

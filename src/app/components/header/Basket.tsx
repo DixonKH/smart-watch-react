@@ -8,8 +8,11 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useHistory } from "react-router-dom";
 import ShopTwoIcon from "@mui/icons-material/ShopTwo";
 import { CartItem } from "../../../lib/types/search";
-import { serverApi } from "../../../lib/config";
+import { Messages, serverApi } from "../../../lib/config";
 import DeleteSweepIcon from "@mui/icons-material/DeleteSweep";
+import OrderService from "../../services/OrderService";
+import { sweetErrorHandling } from "../../../lib/sweetAlert";
+import { useGlobals } from "../../hooks/useGlobals";
 
 interface BasketProps {
   cartItems: CartItem[];
@@ -21,7 +24,7 @@ interface BasketProps {
 
 export default function Basket(props: BasketProps) {
   const { cartItems, onAdd, onRemove, onDelete, onDeleteAll } = props;
-  const authMember = null;
+  const { authMember, setOrderBuilder } = useGlobals();
   const history = useHistory();
   const itemPrice = cartItems.reduce(
     (acc, item) => acc + item.price * item.quantity,
@@ -40,6 +43,25 @@ export default function Basket(props: BasketProps) {
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const proceedOrderHandler = async () => {
+    try {
+      handleClose();
+      if (!authMember) throw new Error(Messages.error2);
+
+      const order = new OrderService();
+      await order.createOrder(cartItems);
+
+      onDeleteAll();
+
+      setOrderBuilder(new Date());
+
+      history.push("/orders");
+    } catch (err) {
+      console.log(err);
+      sweetErrorHandling(err).then();
+    }
   };
 
   return (
@@ -147,6 +169,7 @@ export default function Basket(props: BasketProps) {
               <Button
                 startIcon={<ShoppingCartIcon />}
                 className="shopping-card"
+                onClick={proceedOrderHandler}
               >
                 Order
               </Button>
@@ -158,4 +181,7 @@ export default function Basket(props: BasketProps) {
       </Menu>
     </Box>
   );
+}
+function setOrderBuilder(arg0: Date) {
+  throw new Error("Function not implemented.");
 }

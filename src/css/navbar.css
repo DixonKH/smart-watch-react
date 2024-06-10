@@ -51,13 +51,13 @@
 .home-navbar .underline {
   display: block;
   content: "";
-  border-bottom: solid 2px var(--primary);
+  border-bottom: solid 1.5px var(--primary);
 }
 
 .home-navbar .hover-line:after {
   display: block;
   content: "";
-  border-bottom: solid 2px var(--primary);
+  border-bottom: solid 1.2px var(--primary);
   transform: scaleX(0);
   transition: transform 250ms ease-in-out;
 }
@@ -219,13 +219,13 @@
 .other-navbar .underline {
   display: block;
   content: "";
-  border-bottom: solid 2.5px var(--primary);
+  border-bottom: solid 1.5px var(--primary);
 }
 
 .other-navbar .hover-line:after {
   display: block;
   content: "";
-  border-bottom: solid 2.5px var(--primary);
+  border-bottom: solid 1.2px var(--primary);
   transform: scaleX(0);
   transition: transform 250ms ease-in-out;
 }
