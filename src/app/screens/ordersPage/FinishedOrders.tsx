@@ -1,4 +1,4 @@
-import { Box, Container, Stack } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
 import { retrieveFinishedOrders } from "./selector";

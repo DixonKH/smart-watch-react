@@ -133,10 +133,10 @@ export function OrdersPage() {
             />
           </Tabs>
           <TabPanel value={value} index={0}>
-            <PausedOrders />
+            <PausedOrders setValue={setValue} />
           </TabPanel>
           <TabPanel value={value} index={1}>
-            <ProcessOrders />
+            <ProcessOrders setValue={setValue} />
           </TabPanel>
           <TabPanel value={value} index={2}>
             <FinishedOrders />

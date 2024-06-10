@@ -171,11 +171,11 @@
 }
 
 .order-page .order-main-box .total-price-box p {
-  margin-left: 7px;
+  margin-left: 5px;
   font-family: "Poppins";
   font-style: normal;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 36px;
   color: var(--forth);
 }
