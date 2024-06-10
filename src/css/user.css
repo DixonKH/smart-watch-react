@@ -259,7 +259,7 @@
   font-weight: 400;
   font-size: 15px;
   line-height: 26px;
-  color: var(--third);
+  color: var(--forth);
 }
 
 .user-page .settings .spec-textarea {
@@ -280,7 +280,7 @@
   font-weight: 400;
   font-size: 15px;
   line-height: 26px;
-  color: var(--third);
+  color: var(--forth);
 }
 
 .user-page .settings .member-media-frame {
@@ -318,7 +318,7 @@
 }
 
 .user-page .settings .media-change-box p {
-  margin: 10px 0px 14px 0px;
+  margin: 10px 0px 14px 8px;
   font-family: "Poppins";
   font-style: normal;
   font-weight: 400;

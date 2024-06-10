@@ -17,6 +17,7 @@ import { useGlobals } from "../../hooks/useGlobals";
 import { useHistory } from "react-router-dom";
 import { OrderStatus } from "../../../lib/enums/order.enum";
 import OrderService from "../../services/OrderService";
+import { serverApi } from "../../../lib/config";
 
 const actionDispatch = (dispatch: Dispatch) => ({
   setPausedOrders: (data: Order[]) => dispatch(setPausedOrders(data)),
@@ -149,7 +150,11 @@ export function OrdersPage() {
             <Box className={"member-box"}>
               <div className={"order-user-img"}>
                 <img
-                  src={"/icons/default-user.svg"}
+                  src={
+                    authMember?.memberImage
+                      ? `${serverApi}/${authMember.memberImage}`
+                      : "/icons/default-user.svg"
+                  }
                   className={"order-user-avatar"}
                 />
                 <div className={"order-user-icon-box"}>
@@ -161,14 +166,16 @@ export function OrdersPage() {
               </div>
             </Box>
             <Box>
-              <div className={"order-user-name"}>Dixon</div>
-              <div className={"order-user-prof"}>User</div>
+              <div className={"order-user-name"}>{authMember?.memberNick}</div>
+              <div className={"order-user-prof"}>{authMember?.memberType}</div>
             </Box>
             <Box className={"liner"}></Box>
             <Box className={"order-user-address"}>
               <LocationOnIcon className={"order-user-location"} />
               <div className={"order-local-address"}>
-                South Korea, Busan, Dongsang-ro
+                {authMember?.memberAddress
+                  ? authMember.memberAddress
+                  : "no address"}
               </div>
             </Box>
           </Stack>
