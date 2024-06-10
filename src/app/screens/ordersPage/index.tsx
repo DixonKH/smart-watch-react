@@ -61,9 +61,10 @@ export function OrdersPage() {
   const { setPausedOrders, setProcessOrders, setFinishedOrders } =
     actionDispatch(useDispatch());
 
-  const { orderBuilder, authMember } = useGlobals();
-  const [value, setValue] = React.useState(0);
   const history = useHistory();
+  const { orderBuilder, authMember } = useGlobals();
+  if (!authMember) history.push("/");
+  const [value, setValue] = React.useState(0);
   const [orderInquiry, setOrderInquiry] = useState<OrderInquiry>({
     page: 1,
     limit: 5,
