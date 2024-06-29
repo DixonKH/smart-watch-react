@@ -18,16 +18,16 @@ const light = {
       main: "#44adca",
     },
     secondary: {
+      contrastText: "#fff",
+      main: "#ff00a1",
+    },
+    info: {
       contrastText: "#000",
       main: "#f8f8f8",
     },
-    third: {
-      contrastText: "#000",
-      main: "#d34258",
-    },
     text: {
-      primary: "#2f2f2f",
-      dark: common.black,
+      primary: "#000",
+      main: "#f8f8f8",
     },
   },
   components: {

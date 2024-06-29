@@ -1,7 +1,7 @@
 :root {
   --background: #e4eafc;
   --primary: #44adca;
-  --secondary: #d34258;
+  --secondary: #ff00a1;
   --third: #b2b2b2;
   --forth: #2f2f2f;
   --five: #f8f8ff;
@@ -9,9 +9,21 @@
 
 .home-navbar {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: flex;
   flex-direction: column;
+}
+
+.home-navbar .navbar-container {
+  position: fixed;
+  z-index: 99;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 20px;
+  background: var(--primary);
 }
 
 .home-navbar .menu {
@@ -20,6 +32,27 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+}
+
+.home-navbar .menu .logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.home-navbar .menu .logo img {
+  padding-top: 10px;
+  width: 70px;
+  height: 70px;
+  color: #ff00a1;
+}
+
+.home-navbar .menu .logo .text {
+  margin-left: -20px;
+  font-size: 25px;
+  font-weight: 600;
+  font-family: "Poppins";
+  color: #ff00a1;
 }
 
 .home-navbar .menu .links {
@@ -34,7 +67,7 @@
   font-family: "Poppins";
   font-weight: 500;
   font-size: 18px;
-  color: var(--forth);
+  color: var(--five);
 }
 
 .home-navbar .menu .links .user {
@@ -51,13 +84,13 @@
 .home-navbar .underline {
   display: block;
   content: "";
-  border-bottom: solid 1.5px var(--primary);
+  border-bottom: solid 1.5px var(--five);
 }
 
 .home-navbar .hover-line:after {
   display: block;
   content: "";
-  border-bottom: solid 1.2px var(--primary);
+  border-bottom: solid 1.2px var(--five);
   transform: scaleX(0);
   transition: transform 250ms ease-in-out;
 }
@@ -80,6 +113,7 @@
   width: 25px;
   height: 25px;
   cursor: pointer;
+  color: #fff;
 }
 
 .home-navbar .left-navbar .login-button {
@@ -90,6 +124,7 @@
   font-size: 25px;
   margin: 0;
   cursor: pointer;
+  color: #fff;
 }
 
 .home-navbar .left-navbar .user-avatar {
@@ -100,6 +135,7 @@
 }
 
 .home-navbar .carusel {
+  margin-top: 80px;
   position: relative;
   width: 100%;
   height: auto;
@@ -150,6 +186,39 @@
   flex-direction: column;
 }
 
+.other-navbar .menu .logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.other-navbar .menu .logo img {
+  padding-top: 10px;
+  width: 70px;
+  height: 70px;
+  color: #ff00a1;
+}
+
+.other-navbar .menu .logo .text {
+  margin-left: -20px;
+  font-size: 25px;
+  font-weight: 600;
+  font-family: "Poppins";
+  color: #ff00a1;
+}
+
+.other-navbar .navbar-container {
+  position: fixed;
+  z-index: 99;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 20px;
+  background: var(--primary);
+}
+
 .other-navbar .menu {
   height: 80px;
   display: flex;
@@ -170,7 +239,7 @@
   font-family: "Poppins";
   font-weight: 500;
   font-size: 18px;
-  color: var(--forth);
+  color: var(--five);
 }
 
 .other-navbar .links .left-navbar {
@@ -187,10 +256,12 @@
   width: 25px;
   height: 25px;
   cursor: pointer;
+  color: #fff;
 }
 .other-navbar .left-navbar .login-button {
   width: 25px;
   height: 25px;
+  color: #fff;
 }
 .other-navbar .left-navbar .login-button .login-icon {
   font-size: 25px;
@@ -219,13 +290,13 @@
 .other-navbar .underline {
   display: block;
   content: "";
-  border-bottom: solid 1.5px var(--primary);
+  border-bottom: solid 1.5px var(--five);
 }
 
 .other-navbar .hover-line:after {
   display: block;
   content: "";
-  border-bottom: solid 1.2px var(--primary);
+  border-bottom: solid 1.2px var(--five);
   transform: scaleX(0);
   transition: transform 250ms ease-in-out;
 }
@@ -235,9 +306,10 @@
 }
 
 .other-navbar .navbar-img {
+  margin-top: 80px;
   width: 100%;
   height: 300px;
-  background-image: url("/public/img/clock-8300238_1280.jpg");
+  background-image: url("/public/img/watches.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -246,7 +318,7 @@
 /* BASKET */
 
 .basket {
-  color: #000000;
+  color: #fff;
 }
 .basket-frame {
   position: relative;
@@ -266,7 +338,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  background: var(--secondary);
+  background: #ff00a1;
   color: #f8f8ff;
 }
 
@@ -313,7 +385,7 @@
   font-weight: 600;
   font-size: 15px;
   line-height: 22px;
-  color: #ae0000;
+  color: #ff00a1;
 }
 
 .basket-info-box
@@ -329,7 +401,7 @@
   position: absolute;
   top: 33%;
   right: 2%;
-  color: #d34258;
+  color: #ff00a1;
   cursor: pointer;
 }
 

@@ -1,7 +1,7 @@
 :root {
   --background: #ffffff;
   --primary: #44adca;
-  --secondary: #d34258;
+  --secondary: #ff00a1;
   --third: #b2b2b2;
   --forth: #2f2f2f;
   --five: #f8f8f8;
@@ -161,7 +161,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  color: var(--secondary);
+  color: #ff00a1;
 }
 
 .user-page .order-info-box .user-desc {
@@ -362,7 +362,7 @@
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
-  background: #d34258;
+  background: #ff00a1;
   color: #f8f8ff;
   border-radius: 5px;
 }

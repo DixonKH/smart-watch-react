@@ -14,8 +14,8 @@ import { useSelector } from "react-redux";
 import { serverApi } from "../../../lib/config";
 import { retriveAdmin, retriveChosenProduct } from "./selector";
 import { Member } from "../../../lib/types/member";
-import { useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useHistory, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import ProductService from "../../services/ProductService";
 import MemberService from "../../services/MemberService";
 import { CartItem } from "../../../lib/types/search";
@@ -42,10 +42,11 @@ interface ChosenProductProps {
 
 export default function ChosenProduct(props: ChosenProductProps) {
   const { onAdd } = props;
-  const { productId } = useParams<{ productId: string }>();
   const { setAdmin, setChosenProduct } = actionDispatch(useDispatch());
+  const { productId } = useParams<{ productId: string }>();
   const { chosenProduct } = useSelector(chosenProductRetriver);
   const { admin } = useSelector(adminRetriver);
+  const navigate = useHistory();
 
   useEffect(() => {
     const product = new ProductService();
@@ -60,6 +61,10 @@ export default function ChosenProduct(props: ChosenProductProps) {
       .then((data) => setAdmin(data))
       .catch((err) => console.log(err));
   }, []);
+  /** HANDLER */
+  const handleCancel = () => {
+    navigate.push("/products");
+  };
 
   if (!chosenProduct) return null;
   const imagePath = `${serverApi}/${chosenProduct.productImages[0]}`;
@@ -140,7 +145,7 @@ export default function ChosenProduct(props: ChosenProductProps) {
             ADD TO CART
           </Button>
         </Stack>
-        <div className="cencel-btn">
+        <div className="cencel-btn" onClick={handleCancel}>
           <img src={"/icons/cancel.svg"} alt="" />
         </div>
       </div>

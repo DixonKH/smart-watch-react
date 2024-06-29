@@ -1,7 +1,7 @@
 :root {
   --background: #ffffff;
   --primary: #44adca;
-  --secondary: #d34258;
+  --secondary: #ff00a1;
   --third: #b2b2b2;
   --forth: #2f2f2f;
   --five: #f8f8f8;
@@ -274,7 +274,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--secondary);
+  background: #ff00a1;
   box-shadow: 4px 6px 20px rgba(0, 0, 0, 0.1);
   border-radius: 3px;
   font-family: "Poppins";

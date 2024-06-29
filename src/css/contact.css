@@ -1,0 +1,158 @@
+.contact-page {
+  width: 100%;
+  height: 500px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+}
+
+.contact-page .right {
+  width: 390px;
+  height: 350px;
+  border: 1px solid #ded6d1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.contact-page .info-title {
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+.contact-page .right .address {
+  margin-top: 15px;
+  width: 100%;
+  padding: 0 15px 5px 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid #ded6d1;
+}
+
+.contact-page .right .address .locationIcon {
+  width: 36px;
+  height: 36px;
+  color: rgb(140, 140, 129);
+}
+
+.contact-page .right .phone {
+  width: 100%;
+  padding: 0 15px 7px 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid #ded6d1;
+}
+
+.contact-page .right .phone .locationPhone {
+  width: 34px;
+  height: 34px;
+  color: rgb(140, 140, 129);
+}
+
+.contact-page .right .email {
+  width: 100%;
+  padding: 0 15px 7px 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+
+.contact-page .right .email .locationEmail {
+  width: 34px;
+  height: 34px;
+  color: rgb(140, 140, 129);
+}
+
+/* LEFT */
+
+.contact-page .left {
+  position: relative;
+  padding: 20px;
+  width: 100%;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  border: 1px solid #ded6d1;
+}
+
+.contact-page .left .contact-info {
+  margin-left: 100px;
+}
+
+.contact-page .left .contact-info .subject {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+
+.contact-page .left .contact-info p {
+  width: 120px;
+  text-align: right;
+}
+
+.contact-page .left .contact-info .subject .subject-input {
+  width: 420px;
+  height: 40px;
+  outline: none;
+  border: none;
+  background: #f1f1f1;
+  padding-left: 10px;
+  font-size: 15px;
+  font-family: "Poppins";
+}
+
+.contact-page .left .contact-info .email-address {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+
+.contact-page .left .contact-info .email-address .email-input {
+  width: 420px;
+  height: 40px;
+  outline: none;
+  border: none;
+  background: #f1f1f1;
+  padding-left: 10px;
+  font-size: 15px;
+  font-family: "Poppins";
+}
+
+.contact-page .left .contact-info .message {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+
+.contact-page .left .contact-info .message .message-input {
+  width: 420px;
+  height: 40px;
+  outline: none;
+  border: none;
+  background: #f1f1f1;
+  padding-left: 10px;
+  font-size: 15px;
+  font-family: "Poppins";
+}
+
+.contact-page .left .send-btn {
+  position: absolute;
+  right: 27%;
+  bottom: 40px;
+}

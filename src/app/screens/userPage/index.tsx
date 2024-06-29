@@ -6,8 +6,8 @@ import TelegramIcon from "@mui/icons-material/Telegram";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import { useHistory } from "react-router-dom";
 import { useGlobals } from "../../hooks/useGlobals";
-import "../../../css/user.css";
 import { serverApi } from "../../../lib/config";
+import "../../../css/user.css";
 
 export function UserPage() {
   const history = useHistory();

@@ -52,13 +52,14 @@ export function HomeNavbar(props: HomeNavbarProps) {
 
   return (
     <div className="home-navbar">
-      <Container className="navbar-container">
-        <Stack className="menu">
+      <Stack className="navbar-container">
+        <Container className="menu">
           <Stack>
-            <Box>
+            <Box className="logo">
               <NavLink to={"/"}>
                 <img src="./img/logo.png" alt="logo" />
               </NavLink>
+              <Box className="text">Smart</Box>
             </Box>
           </Stack>
           <Stack className={"links"}>
@@ -171,8 +172,8 @@ export function HomeNavbar(props: HomeNavbarProps) {
               </Menu>
             </Box>
           </Stack>
-        </Stack>
-      </Container>
+        </Container>
+      </Stack>
       <div className="carusel">
         <SlidePage />
       </div>

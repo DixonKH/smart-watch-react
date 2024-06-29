@@ -29,7 +29,6 @@ import { serverApi } from "../../../lib/config";
 import { retriveProducts } from "./selector";
 import ProductService from "../../services/ProductService";
 import { ProductCollection } from "../../../lib/enums/product.enum";
-import { Collections } from "@mui/icons-material";
 import { useHistory } from "react-router-dom";
 import { CartItem } from "../../../lib/types/search";
 
@@ -106,6 +105,7 @@ export default function Products(props: ProductsProps) {
   const handleChange = (event: SelectChangeEvent) => {
     setSorts(event.target.value);
   };
+
   return (
     <div className="products">
       <Container>
@@ -201,7 +201,9 @@ export default function Products(props: ProductsProps) {
                     <Stack
                       key={product._id}
                       className="product-card"
-                      onClick={() => chooseWatchHandler(product._id)}
+                      onClick={() => {
+                        chooseWatchHandler(product._id);
+                      }}
                     >
                       <Stack
                         className="product-img"
@@ -269,7 +271,7 @@ export default function Products(props: ProductsProps) {
                     productSearch.productCollection ===
                     ProductCollection.APPLE_WATCH
                       ? "primary"
-                      : "secondary"
+                      : "info"
                   }
                   className="order"
                   onClick={() =>
@@ -284,7 +286,7 @@ export default function Products(props: ProductsProps) {
                     productSearch.productCollection ===
                     ProductCollection.SAMSUNG_WATCH
                       ? "primary"
-                      : "secondary"
+                      : "info"
                   }
                   className="order"
                   onClick={() =>
@@ -299,7 +301,7 @@ export default function Products(props: ProductsProps) {
                     productSearch.productCollection ===
                     ProductCollection.HUAWEI_WATCH
                       ? "primary"
-                      : "secondary"
+                      : "info"
                   }
                   className="order"
                   onClick={() =>
@@ -314,7 +316,7 @@ export default function Products(props: ProductsProps) {
                     productSearch.productCollection ===
                     ProductCollection.EARBUDS
                       ? "primary"
-                      : "secondary"
+                      : "info"
                   }
                   className="order"
                   onClick={() =>
@@ -328,7 +330,7 @@ export default function Products(props: ProductsProps) {
                   color={
                     productSearch.productCollection === ProductCollection.OTHERS
                       ? "primary"
-                      : "secondary"
+                      : "info"
                   }
                   className="order"
                   onClick={() =>
